@@ -1,0 +1,15 @@
+Belov1 ,programmirovanie,40000
+Belov2 ,programmirovanie,40000
+Belov3,programmirovanie,50000
+Belov4 ,programmirovanie,60000
+Belov5 ,programmirovanie,70000
+Naumova1 ,prodazhi,20000
+Naumova2 ,prodazhi,30000
+Naumova3 ,prodazhi,40000
+Naumova4 ,prodazhi,50000
+Naumova5,prodazhi,55000
+Samsonov1 ,HR,25000
+Samsonov2,HR,30000
+Samsonov3,HR,40000
+Samsonov4,HR,45000
+Samsonov5,HR,50000
