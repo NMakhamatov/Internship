@@ -1,7 +1,9 @@
 package ru.tsconsulting.Internship;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Collection;
 
 class Department {
     private String name;
@@ -18,7 +20,17 @@ class Department {
     }
 
     public ArrayList<Person> getListOfPersons() {
-        return list;
+        return new ArrayList<Person>(list);
+    }
+    public BigDecimal addAndRecountAverSalary(Person[] persons) {
+        for (Person p: persons) {
+            list.add(p);
+        }
+        BigDecimal temp = countAverSalary();
+        for (Person p: persons) {
+            list.remove(p);
+        }
+        return temp;
     }
 
     BigDecimal countAverSalary() {
@@ -27,6 +39,6 @@ class Department {
             averSalary = averSalary.add(p.getSalary());
         }
         BigDecimal listSize = new BigDecimal(list.size());
-        return averSalary.divide(listSize);
+        return averSalary.divide(listSize,2,BigDecimal.ROUND_HALF_UP);
     }
 }
