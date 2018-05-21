@@ -6,12 +6,16 @@ public class Task1 {
     public static void main(String[] args) {
         if (args.length != 0) {
             GetInputData inputData = new GetInputData(args[0]);
-            Map<String, Department> map = inputData.getDepartments();
-            Combinations combinations = new Combinations(map);
-            combinations.findCombinations(map);
-            PrintToFile ptfile = new PrintToFile(args[0]);
-            ptfile.setToPrint(combinations.getToPrint());
-            ptfile.method();
+            Map<String, Department> departments = inputData.getDepartments();
+            System.out.println(" AAAAAAAAA" + departments.get("hr").countAverSalary()); ////!!!!
+            PrintToFile printToFile = new PrintToFile(args[0],departments);
+            printToFile.method(departments);
+//            Map<String,Person[]> combinations = Comb.createCombinations(departments);
+//            Combinations combinations = new Combinations(map);
+//            combinations.findCombinations(map);
+//            PrintToFile ptfile = new PrintToFile(args[0]);
+//            ptfile.setToPrint(combinations.getToPrint());
+//            ptfile.method();
         } else System.out.println("Введите путь к файлу");
 //        for (Map.Entry<String,ArrayList<Person[]>> entry: leavingPersons.entrySet()) {
 //            System.out.print("Department " + entry.getKey() + " has following combinations: \n");
@@ -31,7 +35,6 @@ public class Task1 {
 //        int i = 5;
 //        Task1 task1 = new Task1();
 //        System.out.println(task1.fact(i));
-
     }
 //     int fact(int n) {
 //        if (n == 1) {return 1;}

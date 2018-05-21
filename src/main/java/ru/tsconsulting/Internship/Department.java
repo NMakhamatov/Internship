@@ -17,12 +17,12 @@ class Department {
         list.add(p);
     }
 
-    public ArrayList<Person> getList() {
+    public ArrayList<Person> getListOfPersons() {
         return list;
     }
 
     BigDecimal countAverSalary() {
-        BigDecimal averSalary = new BigDecimal(0);
+        BigDecimal averSalary = BigDecimal.ZERO;
         for (Person p : list) {
             averSalary = averSalary.add(p.getSalary());
         }

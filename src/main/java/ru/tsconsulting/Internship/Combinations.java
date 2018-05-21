@@ -19,6 +19,8 @@ class Combinations {
         this.departments = departments;
     }
 
+
+
     /* arr[]  ---> Input Array
         data[] ---> Temporary array to store current combination
         start & end ---> Staring and Ending indexes in arr[]
@@ -61,7 +63,7 @@ class Combinations {
     // in arr[] of size n. This function mainly uses combinationUtil()
     void findCombinations(Map<String, Department> map) {
             for (Map.Entry<String, Department> departmentEntry : map.entrySet()) {
-                int r = departmentEntry.getValue().getList().size();
+                int r = departmentEntry.getValue().getListOfPersons().size();
                 // A temporary array to store all combination one by one
                 Person data[] = new Person[r];
 //                int n = departmentMap.getValue().getList().size();
@@ -69,7 +71,7 @@ class Combinations {
 
                 //следующие 2 строки необходимы для приведения Object[] к Person[]
                 Person[] persons = new Person[r];
-                departmentEntry.getValue().getList().toArray(persons);
+                departmentEntry.getValue().getListOfPersons().toArray(persons);
 
                 for (int i = 1; i <= r; i++) {
                     combinationUtil(departmentEntry.getKey(), persons,

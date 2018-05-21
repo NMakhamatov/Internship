@@ -15,20 +15,6 @@ class Person {
                 throw new NumberFormatException("Отрицательная зарплата");
             }
     }
-
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//    public void setSalary(String salary) {
-//        try {this.salary = new BigDecimal(salary).setScale(2);}
-//        catch (NumberFormatException ex) {
-//            System.out.println("Указана неверная зарплата");
-//
-//        }
-//        catch (ArithmeticException e) {
-//            System.out.println("Неверный формат зарплаты");
-//        }
-//    }
     public String getName() {return name; }
     public BigDecimal getSalary() {
         return salary;
