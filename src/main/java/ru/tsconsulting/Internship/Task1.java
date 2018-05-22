@@ -9,13 +9,13 @@ public class Task1 {
             InputData inputData = new InputData();
             try {
                 inputData.readDataFromFile(args[0]);
+                Map<String, Department> departments = inputData.getDepartments();
+                PrintToFile printToFile = new PrintToFile(args[0]);
+                printToFile.printResultsToFile(departments);
             } catch (IOException e) {
                 System.out.println("IOException has been caught. Invalid path to the file");
-                System.exit(0);
             }
-            Map<String, Department> departments = inputData.getDepartments();
-            PrintToFile printToFile = new PrintToFile(args[0]);
-            printToFile.printResultsToFile(departments);
+
 //            for (Map.Entry<String,Department> entry: departments.entrySet()) {
 //                System.out.println(entry.getKey() + ":");
 //                for (Person person:entry.getValue().getListOfPersons()   ) {

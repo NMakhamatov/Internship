@@ -1,7 +1,6 @@
 package ru.tsconsulting.Internship;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 class Person {
     private String name;

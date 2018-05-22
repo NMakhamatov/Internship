@@ -16,7 +16,6 @@ class Combinations {
             Person previousPerson = in.get(in.size() - 1);
             in.remove(in.size() - 1);
             ArrayList<Person[]> out = (ArrayList<Person[]>) createCombinations(in);
-
             int j = out.size();
             Person[] prev = new Person[1];
             prev[0] = previousPerson;

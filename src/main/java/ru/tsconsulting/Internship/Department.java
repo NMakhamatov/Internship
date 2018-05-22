@@ -20,12 +20,12 @@ class Department {
     ArrayList<Person> getListOfPersons() {
         return new ArrayList<>(list);
     }
-    BigDecimal addAndRecountAverSalary(Person[] persons) {
-        list.addAll(Arrays.asList(persons));
-        BigDecimal temp = countAverSalary();
-        list.addAll(Arrays.asList(persons));
-        return temp;
-    }
+//    BigDecimal addAndRecountAverSalary(Person[] persons) {
+//        list.addAll(Arrays.asList(persons));
+//        BigDecimal temp = countAverSalary();
+//        list.addAll(Arrays.asList(persons));
+//        return temp;
+//    }
 
     BigDecimal countAverSalary() {
         BigDecimal averSalary = BigDecimal.ZERO;

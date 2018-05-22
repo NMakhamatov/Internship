@@ -11,10 +11,6 @@ public class InputData {
         return departments;
     }
 
-//    public ReadInputData()throws  IOException {
-////        readData(s);
-//    }
-
     public void readDataFromFile(String way) throws IOException {
 
         BufferedReader br = new BufferedReader(new FileReader(way));
@@ -49,5 +45,6 @@ public class InputData {
             }
 
         }
+        br.close();
     }
 }
