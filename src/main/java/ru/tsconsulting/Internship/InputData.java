@@ -4,7 +4,7 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class ReadInputData {
+public class InputData {
     private Map<String, Department> departments = new HashMap<>();
 
     public Map<String, Department> getDepartments() {

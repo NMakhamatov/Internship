@@ -6,7 +6,7 @@ import java.util.*;
 public class Task1 {
     public static void main(String[] args) {
         if (args.length != 0) {
-            ReadInputData inputData = new ReadInputData();
+            InputData inputData = new InputData();
             try {
                 inputData.readDataFromFile(args[0]);
             } catch (IOException e) {
