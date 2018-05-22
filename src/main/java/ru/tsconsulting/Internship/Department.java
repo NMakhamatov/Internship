@@ -1,9 +1,8 @@
 package ru.tsconsulting.Internship;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
 
 class Department {
     private String name;
@@ -14,22 +13,17 @@ class Department {
     public String getName() {
         return name;
     }
-
-    public void addPerson(Person p) {
+    void addPerson(Person p) {
         list.add(p);
     }
 
-    public ArrayList<Person> getListOfPersons() {
-        return new ArrayList<Person>(list);
+    ArrayList<Person> getListOfPersons() {
+        return new ArrayList<>(list);
     }
-    public BigDecimal addAndRecountAverSalary(Person[] persons) {
-        for (Person p: persons) {
-            list.add(p);
-        }
+    BigDecimal addAndRecountAverSalary(Person[] persons) {
+        list.addAll(Arrays.asList(persons));
         BigDecimal temp = countAverSalary();
-        for (Person p: persons) {
-            list.remove(p);
-        }
+        list.addAll(Arrays.asList(persons));
         return temp;
     }
 
