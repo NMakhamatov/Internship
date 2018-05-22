@@ -1,4 +1,4 @@
-Belov1 ,programmirovanie,40000
+Belov1 ,programmirovanie,30000
 Belov2 ,programmirovanie,40000
 Belov3,programmirovanie,50000
 Belov4 ,programmirovanie,60000
