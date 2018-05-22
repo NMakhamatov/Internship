@@ -17,40 +17,37 @@ public class PrintToFile {
 
     void printResultsToFile(Map<String, Department> map) {
         Map<String, List<Person[]>> combinations = new HashMap<>();
-        for (Map.Entry<String, Department> entry : map.entrySet()) {
-            combinations.put(entry.getKey(), Combinations.createCombinations(entry.getValue().getListOfPersons()));
-        }
         int indexOfSlash = inputFileName.lastIndexOf("\\");
         String folder = inputFileName.substring(0, indexOfSlash + 1);
         try (FileWriter fw = new FileWriter(folder + "Out.txt");
              PrintWriter pw = new PrintWriter(fw)) {
-            for (Map.Entry<String, List<Person[]>> entry : combinations.entrySet()) {
-                BigDecimal averSalary = map.get(entry.getKey()).countAverSalary();
-                for (Person[] persons : entry.getValue()) {
-                    BigDecimal sum = BigDecimal.ZERO;
-                    StringBuilder employees = new StringBuilder();
-//                    String employees = "";
-                    for (Person per : persons) {
-                        sum = sum.add(per.getSalary());
-//                        employees += per.getName() + ",";
-                        employees = employees.append(per.getName());
-                        employees = employees.append(",");
-                    }
-//                    employees = employees.substring(0, employees.length() - 1);
-                    employees.deleteCharAt(employees.length()-1);
-                    sum = sum.divide(new BigDecimal(persons.length), 2);
-                    for (Map.Entry<String, Department> deps : map.entrySet()) {
-                        BigDecimal averSalary2 = deps.getValue().countAverSalary();
-                        if ((sum.compareTo(averSalary) < 0) && (sum.compareTo(averSalary2) > 0)) {
-                            pw.println("Сотрудники: " + employees + " могут перейти из отдела " +
-                                    entry.getKey() + " со средней зп " + averSalary + " в отдел "
-                                    + deps.getKey() + " со средней зп (старая:" + averSalary2 +
-                                    " => новая:" + addAndRecountSalary(sum,averSalary2,
-                                    deps.getValue().getListOfPersons().size())   + ")");
+                for (Map.Entry<String,Department> departmentEntry: map.entrySet()) {
+                    String departmentName = departmentEntry.getKey();
+                    combinations.put(departmentName,Combinations.createCombinations(departmentEntry.getValue().getListOfPersons()));
+                    BigDecimal averSalary = map.get(departmentName).countAverSalary();
+                    for (Person[] persons : combinations.get(departmentName)) {
+                        BigDecimal sum = BigDecimal.ZERO;
+                        StringBuilder employees = new StringBuilder();
+                        for (Person per : persons) {
+                            sum = sum.add(per.getSalary());
+                            employees = employees.append(per.getName());
+                            employees = employees.append(",");
+                        }
+                        employees.deleteCharAt(employees.length()-1);
+                        sum = sum.divide(new BigDecimal(persons.length), 2);
+                        for (Map.Entry<String, Department> deps : map.entrySet()) {
+                            BigDecimal averSalary2 = deps.getValue().countAverSalary();
+                            if ((sum.compareTo(averSalary) < 0) && (sum.compareTo(averSalary2) > 0)) {
+                                pw.println("Сотрудники: " + employees + " могут перейти из отдела " +
+                                        departmentName + " со средней зп " + averSalary + " в отдел "
+                                        + deps.getKey() + " со средней зп (старая:" + averSalary2 +
+                                        " => новая:" + addAndRecountSalary(sum,averSalary2,
+                                        deps.getValue().getListOfPersons().size())   + ")");
+                            }
                         }
                     }
+                    combinations.remove(departmentName);
                 }
-            }
         } catch (IOException ex) {
             System.out.print("IOException has been caught");
         } catch (Exception e) {
