@@ -19,18 +19,18 @@ public class InputDataToSortedLindedList {
                 String[] strings1 = s1.split(",");
                 if (strings1.length != 2) throw new DataFormatException("Неверный формат данных");
                 Integer index1 = Integer.parseInt(strings1[0]);
-                ArrayList<String> templist1 = new ArrayList<>();
+                LinkedList<String> templist = new LinkedList<>();
                 StringBuilder stringBuilder = new StringBuilder();
                 //перебор строк второго файла
                 for (String s2 : list2) {
                     String[] strings2 = s2.split(",");
                     Integer index2 = Integer.parseInt(strings2[0]);
                     if (index1.equals(index2)) {
-                        templist1.add(strings2[1]);
+                        templist.add(strings2[1]);
                     }
                 }
-                if (templist1.size() != 0) {
-                    for (String s : templist1) {
+                if (templist.size() != 0) {
+                    for (String s : templist) {
                         System.out.print(index1 + "\t" + strings1[1] + "\t" + s + "\n");
                         stringBuilder.append(index1).append("\t").append(strings1[1]).append("\t").append(s);
                         list.add(stringBuilder.toString());
