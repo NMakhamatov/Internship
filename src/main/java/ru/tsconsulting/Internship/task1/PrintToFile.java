@@ -1,4 +1,4 @@
-package ru.tsconsulting.Internship;
+package ru.tsconsulting.Internship.task1;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class PrintToFile {
         this.inputFileName = inputFileName;
     }
 
-    void printResultsToFile(Map<String, Department> map) {
+    void printResultsToFile(Map<String, ru.tsconsulting.Internship.task1.Department> map) {
         Map<String, List<Person[]>> combinations = new HashMap<>();
         int indexOfSlash = inputFileName.lastIndexOf("\\");
         String folder = inputFileName.substring(0, indexOfSlash + 1);

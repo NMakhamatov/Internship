@@ -1,11 +1,11 @@
-package ru.tsconsulting.Internship;
+package ru.tsconsulting.Internship.task1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 class Combinations {
-    static List<Person[]> createCombinations(ArrayList<Person> in) {
+    static List<ru.tsconsulting.Internship.task1.Person[]> createCombinations(ArrayList<ru.tsconsulting.Internship.task1.Person> in) {
         if (in.size() == 1) {
             List<Person[]> out = new ArrayList<>(1);
             Person[] p = new Person[1];

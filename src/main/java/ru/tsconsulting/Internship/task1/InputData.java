@@ -1,17 +1,17 @@
-package ru.tsconsulting.Internship;
+package ru.tsconsulting.Internship.task1;
 
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class InputData {
+class InputData {
     private Map<String, Department> departments = new HashMap<>();
 
-    public Map<String, Department> getDepartments() {
+    Map<String, Department> getDepartments() {
         return departments;
     }
 
-    public void readDataFromFile(String way) throws IOException {
+    void readDataFromFile(String way) throws IOException {
 
         BufferedReader br = new BufferedReader(new FileReader(way));
         String line = br.readLine();

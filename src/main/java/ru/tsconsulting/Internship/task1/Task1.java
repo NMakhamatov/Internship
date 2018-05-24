@@ -1,4 +1,4 @@
-package ru.tsconsulting.Internship;
+package ru.tsconsulting.Internship.task1;
 
 import java.io.IOException;
 import java.util.*;

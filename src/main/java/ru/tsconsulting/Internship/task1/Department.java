@@ -1,4 +1,4 @@
-package ru.tsconsulting.Internship;
+package ru.tsconsulting.Internship.task1;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
