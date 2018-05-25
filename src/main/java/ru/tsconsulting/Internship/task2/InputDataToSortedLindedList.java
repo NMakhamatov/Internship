@@ -1,6 +1,5 @@
 package ru.tsconsulting.Internship.task2;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,14 +7,16 @@ import java.util.zip.DataFormatException;
 
 public class InputDataToSortedLindedList {
     static List<String> list = new LinkedList<>();
+
     static void createSortedLinkedList(List<String> list1, List<String> list2) {
 
 //        List<String> list2 = l2;
 
         System.out.println("ID" + "\t" + "A.VALUE" + "\t" + "B.VALUE");
         //Перебор строк первого файла
-        try {
-            for (String s1 : list1) {
+
+        for (String s1 : list1) {
+            try {
                 String[] strings1 = s1.split(",");
                 if (strings1.length != 2) throw new DataFormatException("Неверный формат данных");
                 Integer index1 = Integer.parseInt(strings1[0]);
@@ -42,11 +43,16 @@ public class InputDataToSortedLindedList {
                     list.add(stringBuilder.toString());
                     stringBuilder.delete(0, stringBuilder.length());
                 }
-
+            } catch (DataFormatException e) {
+                System.out.println("Неверный формат строки");
+            }catch (NumberFormatException e) {
+                System.out.print("Неверный формат ID");
+            }catch (Exception e) {
+                System.out.println("Exception has been caught");
             }
-            Collections.sort(list, new ListComparatorByID());
-            list.add(0, "ID" + "\t" + "A.VALUE" + "\t" + "B.VALUE");
-        } catch (Exception e) {
         }
+        Collections.sort(list, new ListComparatorByID());
+        list.add(0, "ID" + "\t" + "A.VALUE" + "\t" + "B.VALUE");
+
     }
 }
