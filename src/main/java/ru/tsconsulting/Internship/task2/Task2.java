@@ -23,7 +23,7 @@ public class Task2 {
             Map<Integer, List<String>> map2 = InputDataToHashMap.createHashMap(linkedList2);
 
             List<String> resultFromArrayLists = LeftOuterJoin.getResultFromArrayLists(arraylist1, arraylist2);
-            List<Three<Integer, String, String>> resultFromLinkedLists = LeftOuterJoin.getResultFromLinkedLists(linkedList1, linkedList2);
+            List<Three<Integer, String, String>> resultFromLinkedLists = LeftOuterJoin.getResultFromLinkedLists2(linkedList1, linkedList2);
             List<Three<Integer,String,String>> resultFromHashMaps = LeftOuterJoin.getResultFromHashMaps(map1,map2);
 
             System.out.println("File №1:");

@@ -18,7 +18,7 @@ public class LeftOuterJoin {
             for (String s2 : list2) {
                 String[] strings2 = s2.split(",");
                 Integer index2 = Integer.parseInt(strings2[0]);
-                if (index1 ==  index2) {
+                if (index1 == index2) {
                     templist.add(strings2[1]);
                 }
             }
@@ -36,42 +36,98 @@ public class LeftOuterJoin {
         }
         return result;
     }
-    static List<Three<Integer,String,String>> getResultFromLinkedLists(List<Pair<Integer,String>> list1,List<Pair<Integer,String>> list2) {
-        List<Three<Integer,String,String>> result = new LinkedList<>();
-        for (Pair<Integer,String> pair1 : list1) {
+
+    static List<Three<Integer, String, String>> getResultFromLinkedLists(List<Pair<Integer, String>> list1, List<Pair<Integer, String>> list2) {
+        List<Three<Integer, String, String>> result = new LinkedList<>();
+        for (Pair<Integer, String> pair1 : list1) {
             int index1 = pair1.getKey();
             boolean isRepeating = false;
             List<String> tempList = new LinkedList<>();
-            for (Pair<Integer,String> pair2 : list2) {
+            for (Pair<Integer, String> pair2 : list2) {
                 int index2 = pair2.getKey();
                 if (index1 == index2) {
                     isRepeating = true;
                     tempList.add(pair2.getValue());
                 }
             }
-            if (! isRepeating) result.add(new Three<Integer, String, String>(index1,pair1.getValue(),""));
-            else for (String s : tempList ) {
-                result.add(new Three<>(index1,pair1.getValue(),s));
+            if (!isRepeating) result.add(new Three<Integer, String, String>(index1, pair1.getValue(), ""));
+            else for (String s : tempList) {
+                result.add(new Three<>(index1, pair1.getValue(), s));
             }
 
         }
         return result;
     }
 
-    static List<Three<Integer,String ,String>> getResultFromHashMaps(Map<Integer,List<String>> map1, Map<Integer,List<String>> map2) {
-        List<Three<Integer,String,String>> result = new LinkedList<>();
+    static List<Three<Integer, String, String>> getResultFromLinkedLists2(List<Pair<Integer, String>> list1, List<Pair<Integer, String>> list2) {
+        List<Three<Integer, String, String>> result = new LinkedList<>();
+        List<Pair<Integer, String>> tempList2 = new LinkedList<>(list2);
 
-        for (Map.Entry<Integer,List<String>> entry : map1.entrySet() ) {
+        ListIterator<Pair<Integer, String>> iterator1 = list1.listIterator();
+        ListIterator<Pair<Integer, String>> iterator2 = list2.listIterator();
+
+        Pair<Integer, String> element1 = iterator1.next();
+        Pair<Integer, String> element2 = iterator2.next();
+
+        boolean isEnd1 = false;
+        boolean isEnd2 = false;
+
+        Integer index1;
+        Integer index2;
+
+        while (true) {
+            index1 = element1.getKey();
+            index2 = element2.getKey();
+            int compare = index1.compareTo(index2);
+
+//            if (!iterator1.hasNext()) isEnd1 = true;
+//            if (!iterator2.hasNext()) isEnd2 = true;
+
+            if (compare < 0) {
+                result.add(new Three<>(index1, element1.getValue(), ""));
+                if (iterator1.hasNext()) {
+                    element1 = iterator1.next();
+                } else break;
+            } else if (compare > 0) {
+                if (iterator2.hasNext()) {
+                    element2 = iterator2.next();
+                } else break;
+
+            } else {
+                result.add(new Three<>(index1, element1.getValue(), element2.getValue()));
+
+                while (iterator2.hasNext() && ((element2 = iterator2.next()).getKey().compareTo(index1)) == 0) {
+                    result.add(new Three<>(index1, element1.getValue(), element2.getValue()));
+                }
+                while (iterator2.hasPrevious() && (((element2 = iterator2.previous()).getKey()).compareTo(index1)) == 0) {}
+//                element2 = iterator2.next();
+                if (iterator1.hasNext()) {
+                    element1 = iterator1.next();
+                } else break;
+            }
+
+            //выход из цикла
+//            if (isEnd1 && isEnd2) break;
+        }
+
+
+        return result;
+    }
+
+    static List<Three<Integer, String, String>> getResultFromHashMaps(Map<Integer, List<String>> map1, Map<Integer, List<String>> map2) {
+        List<Three<Integer, String, String>> result = new LinkedList<>();
+
+        for (Map.Entry<Integer, List<String>> entry : map1.entrySet()) {
             int index1 = entry.getKey();
             if (map2.containsKey(index1)) {
                 for (String s1 : map1.get(index1)) {
-                    for (String s2 : map2.get(index1)  ) {
-                        result.add(new Three<Integer, String, String>(index1,s1,s2));
+                    for (String s2 : map2.get(index1)) {
+                        result.add(new Three<Integer, String, String>(index1, s1, s2));
                     }
                 }
-            }else {
+            } else {
                 for (String s : map1.get(index1)) {
-                    result.add(new Three<Integer, String, String>(index1,s,""));
+                    result.add(new Three<Integer, String, String>(index1, s, ""));
                 }
             }
         }
