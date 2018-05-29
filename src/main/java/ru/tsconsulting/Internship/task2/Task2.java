@@ -45,12 +45,12 @@ public class Task2 {
                 System.out.println(three.getKey() + "\t" + three.getValue1() +
                         "\t" + three.getValue2());
             }
-                System.out.println("====   RESULT 3:   =====");
-
-            for (Three<Integer, String, String> three : resultFromHashMaps) {
-                System.out.println(three.getKey() + "\t" + three.getValue1() +
-                        "\t" + three.getValue2());
-            }
+//                System.out.println("====   RESULT 3:   =====");
+//
+//            for (Three<Integer, String, String> three : resultFromHashMaps) {
+//                System.out.println(three.getKey() + "\t" + three.getValue1() +
+//                        "\t" + three.getValue2());
+//            }
 
         } catch (IOException e) {
             System.out.println("Файл  найден");

@@ -61,48 +61,57 @@ public class LeftOuterJoin {
 
     static List<Three<Integer, String, String>> getResultFromLinkedLists2(List<Pair<Integer, String>> list1, List<Pair<Integer, String>> list2) {
         List<Three<Integer, String, String>> result = new LinkedList<>();
-        List<Pair<Integer, String>> tempList2 = new LinkedList<>(list2);
+//        List<Pair<Integer, String>> tempList2 = new LinkedList<>(list2);
 
         ListIterator<Pair<Integer, String>> iterator1 = list1.listIterator();
         ListIterator<Pair<Integer, String>> iterator2 = list2.listIterator();
 
-        Pair<Integer, String> element1 = iterator1.next();
-        Pair<Integer, String> element2 = iterator2.next();
+        Pair<Integer, String> pair1 = iterator1.next();
+        Pair<Integer, String> pair2 = iterator2.next();
 
-        boolean isEnd1 = false;
-        boolean isEnd2 = false;
+//        boolean isEnd1 = false;
+//        boolean isEnd2 = false;
 
         Integer index1;
         Integer index2;
 
         while (true) {
-            index1 = element1.getKey();
-            index2 = element2.getKey();
+            index1 = pair1.getKey();
+            index2 = pair2.getKey();
             int compare = index1.compareTo(index2);
 
 //            if (!iterator1.hasNext()) isEnd1 = true;
 //            if (!iterator2.hasNext()) isEnd2 = true;
 
             if (compare < 0) {
-                result.add(new Three<>(index1, element1.getValue(), ""));
+                result.add(new Three<>(pair1.getKey(), pair1.getValue(), ""));
                 if (iterator1.hasNext()) {
-                    element1 = iterator1.next();
+                    pair1 = iterator1.next();
                 } else break;
             } else if (compare > 0) {
                 if (iterator2.hasNext()) {
-                    element2 = iterator2.next();
+                    pair2 = iterator2.next();
                 } else break;
 
             } else {
-                result.add(new Three<>(index1, element1.getValue(), element2.getValue()));
+                result.add(new Three<>(pair1.getKey(), pair1.getValue(), pair2.getValue()));
 
-                while (iterator2.hasNext() && ((element2 = iterator2.next()).getKey().compareTo(index1)) == 0) {
-                    result.add(new Three<>(index1, element1.getValue(), element2.getValue()));
+                while (iterator2.hasNext()) {
+                    pair2 = iterator2.next();
+                    if (pair2.getKey().compareTo(pair1.getKey()) == 0)
+                        result.add(new Three<Integer, String, String>(pair1.getKey(), pair1.getValue(), pair2.getValue()));
+                    else break;
                 }
-                while (iterator2.hasPrevious() && (((element2 = iterator2.previous()).getKey()).compareTo(index1)) == 0) {}
-//                element2 = iterator2.next();
+
+                pair2 = iterator2.previous();
+
+                while (iterator2.hasPrevious()) {
+                    pair2 = iterator2.previous();
+                    if (!(pair2.getKey().compareTo(pair1.getKey()) == 0)) break;
+                }
+                pair2 = iterator2.next();
                 if (iterator1.hasNext()) {
-                    element1 = iterator1.next();
+                    pair1 = iterator1.next();
                 } else break;
             }
 
